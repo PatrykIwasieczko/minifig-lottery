@@ -60,7 +60,7 @@ export const OrderFormView = () => {
         `${API_BASE}${setNumber}/parts/?key=${API_KEY}&in_theme_id=246`,
       );
 
-      await setParts(data.results);
+      setParts(data.results);
     } catch (error) {
       setError('Something went wrong. Try again later');
     }

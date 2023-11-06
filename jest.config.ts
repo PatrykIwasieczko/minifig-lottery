@@ -23,6 +23,11 @@ const config: Config = {
   coveragePathIgnorePatterns: [],
   modulePaths: [],
   moduleFileExtensions: ['js', 'ts', 'tsx', 'json', 'jsx', 'node'],
+  moduleNameMapper: {
+    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/mocks/fileMock.js',
+    '\\.(css|less)$': '<rootDir>/mocks/fileMock.js',
+  },
   resetMocks: true,
 };
 

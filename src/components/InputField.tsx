@@ -19,7 +19,11 @@ export const InputField = ({
 
   return (
     <div className={className || ''}>
-      {label && <p className='text-start mb-1'>{label}</p>}
+      {label && (
+        <label className='text-start mb-1' htmlFor={name}>
+          {label}
+        </label>
+      )}
       <input
         {...register(name)}
         aria-label={name}

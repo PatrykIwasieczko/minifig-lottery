@@ -6,6 +6,7 @@ import { API_BASE, API_KEY } from '../../lib/consts';
 import axios from 'axios';
 import { ErrorText } from '../../components/ErrorText';
 import { generateRandomNumbers } from '../../lib/utils';
+import { Container } from '../../components/Container';
 
 export const MinifigSelectionView = () => {
   const [minifigs, setMinifigs] = useState<Minifig[]>();
@@ -63,47 +64,46 @@ export const MinifigSelectionView = () => {
   }, [minifigsCount]);
 
   return (
-    <div className='flex items-center justify-center flex-col lg:h-screen p-[5%] lg:p-[10%]'>
+    <Container className='flex items-center justify-center flex-col lg:h-screen'>
       {error && <ErrorText>{error}</ErrorText>}
       <h1 className='uppercase pb-12 text-2xl font-bold'>
         Choose Your Minifig
       </h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {(isProcessing || !minifigs) &&
-          Array.from(Array(3), (_, i) => (
-            <div
-              key={i}
-              className={`bg-slate-300 rounded-3xl w-[275px] h-[275px]`}
-            />
-          ))}
-        {!isProcessing &&
-          minifigs?.map((minifig) => (
-            <button
-              key={minifig.name}
-              className={`bg-white text-black rounded-3xl flex flex-col items-center justify-around p-8 pb-0 w-[275px] h-[275px] border-s-4 ${
-                minifig.name === selectedMinifig?.name
-                  ? 'shadow-[0px_0px_10px_10px] shadow-orange-500'
-                  : 'shadow-none'
-              }`}
-              onClick={() => setSelectedMinifig(minifig)}
-            >
-              {minifig?.set_img_url ? (
-                <img src={minifig?.set_img_url} width={100} />
-              ) : (
-                <div className='block w-[100px]' />
-              )}
-              <h5 className='font-bold'>{minifig?.name}</h5>
-              <a
-                className='py-6 text-orange-500'
-                href={minifig.set_url}
-                onClick={(e) => e.stopPropagation()}
-                rel='noreferrer'
-                target='_blank'
+        {isProcessing || !minifigs
+          ? Array.from(Array(3), (_, i) => (
+              <div
+                key={i}
+                className={`bg-slate-300 rounded-3xl w-[275px] h-[275px]`}
+              />
+            ))
+          : minifigs?.map((minifig) => (
+              <button
+                key={minifig.name}
+                className={`bg-white text-black rounded-3xl flex flex-col items-center justify-around p-8 pb-0 w-[275px] h-[275px] border-s-4 ${
+                  minifig.name === selectedMinifig?.name
+                    ? 'shadow-[0px_0px_10px_10px] shadow-orange-500'
+                    : 'shadow-none'
+                }`}
+                onClick={() => setSelectedMinifig(minifig)}
               >
-                Show details
-              </a>
-            </button>
-          ))}
+                {minifig?.set_img_url ? (
+                  <img src={minifig?.set_img_url} width={100} />
+                ) : (
+                  <div className='block w-[100px]' />
+                )}
+                <h5 className='font-bold'>{minifig?.name}</h5>
+                <a
+                  className='py-6 text-orange-500'
+                  href={minifig.set_url}
+                  onClick={(e) => e.stopPropagation()}
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  Show details
+                </a>
+              </button>
+            ))}
       </div>
       <Button
         className='mt-12 uppercase'
@@ -116,6 +116,6 @@ export const MinifigSelectionView = () => {
       >
         Proceed to shipment
       </Button>
-    </div>
+    </Container>
   );
 };

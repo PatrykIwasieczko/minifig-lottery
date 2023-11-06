@@ -9,6 +9,7 @@ import { MinifigsResponse, Part } from '../../lib/types';
 import { API_BASE, API_KEY } from '../../lib/consts';
 import axios from 'axios';
 import { ErrorText } from '../../components/ErrorText';
+import { Container } from '../../components/Container';
 
 export const OrderFormView = () => {
   const schema = deliverySchema();
@@ -73,7 +74,7 @@ export const OrderFormView = () => {
   return (
     <FormProvider {...formCtx}>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 w-screen h-screen p-8'>
+        <Container className='grid grid-cols-1 lg:grid-cols-3 gap-4 w-screen h-screen'>
           <div className='lg:col-span-2 lg:p-4 lg:m-4'>
             {error && <ErrorText>{error}</ErrorText>}
             <h2 className='text-2xl font-bold uppercase'>Shipping details</h2>
@@ -159,7 +160,7 @@ export const OrderFormView = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </form>
     </FormProvider>
   );

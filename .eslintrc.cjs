@@ -1,0 +1,72 @@
+module.exports = {
+  root: true,
+  env: { browser: true, es2021: true, node: true },
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier',
+  ],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    'react-refresh',
+    'react',
+    'react-hooks',
+    '@typescript-eslint',
+    'prettier',
+    'formatjs',
+    'simple-import-sort',
+    'typescript-sort-keys',
+    'sort-destructure-keys',
+  ],
+  rules: {
+    'prettier/prettier': ['warn'],
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': [
+      2,
+      {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    ],
+    'react/jsx-sort-props': [
+      1,
+      {
+        callbacksLast: false,
+        shorthandFirst: false,
+        shorthandLast: false,
+        ignoreCase: false,
+        noSortAlphabetically: false,
+        reservedFirst: true,
+      },
+    ],
+    'sort-imports': 'off',
+    'typescript-sort-keys/interface': 'warn',
+    'sort-destructure-keys/sort-destructure-keys': 'warn',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react/prop-types': ['off'],
+    'formatjs/no-offset': 'error',
+    'no-nested-ternary': 'error',
+    'newline-before-return': 'error',
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: '*', next: 'return' },
+      {
+        blankLine: 'always',
+        prev: ['singleline-const', 'singleline-let', 'singleline-var'],
+        next: ['multiline-const', 'multiline-let', 'multiline-var'],
+      },
+      {
+        blankLine: 'always',
+        prev: ['multiline-const', 'multiline-let', 'multiline-var'],
+        next: '*',
+      },
+    ],
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+  },
+};

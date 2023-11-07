@@ -74,7 +74,7 @@ export const MinifigSelectionView = () => {
           ? Array.from(Array(3), (_, i) => (
               <div
                 key={i}
-                className={`bg-slate-300 rounded-3xl w-[275px] h-[275px]`}
+                className={`bg-slate-300 rounded-3xl w-[275px] h-[275px] animate-pulse`}
               />
             ))
           : minifigs?.map((minifig) => (
